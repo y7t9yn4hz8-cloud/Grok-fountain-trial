@@ -1,6 +1,6 @@
 
 import * as THREE from './three.module.js';
-import {makeEnvironment, buildFountain, animateWater} from './visuals.js';
+import {makeEnvironment, buildFountain, animateWater} from './visuals.js?v=iphone-assets-1';
 
 // ============================================================
 //  CONFIG

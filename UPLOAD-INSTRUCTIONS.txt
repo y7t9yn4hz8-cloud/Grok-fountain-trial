@@ -1,0 +1,15 @@
+IPHONE DARKNESS FIX
+
+The GitHub repository was missing all five files from the assets folder. This package places every runtime file in ONE folder and updates their paths. It preserves the tested lighting and gameplay.
+
+1. Extract this ZIP on your ThinkPad.
+2. Open github.com/y7t9yn4hz8-cloud/Grok-fountain-trial.
+3. Choose Add file > Upload files.
+4. Select ALL files inside the extracted folder and upload them directly to the repository root. Do not upload the ZIP or the enclosing folder.
+5. Commit changes, wait for the Pages deployment to complete, then refresh Safari.
+6. Confirm the header contains FIX 1. If necessary open:
+   https://y7t9yn4hz8-cloud.github.io/Grok-fountain-trial/?fix=1
+
+Verify the repository now contains stone.jpg, stone-normal.jpg, paving.jpg, paving-normal.jpg, and sky.hdr alongside index.html and the JavaScript files.
+
+This package changes asset paths and adds versioned script URLs to refresh cached code. No exposure or scene-lighting change is needed to correct the missing upload. No files were pushed to GitHub and the main Veyra game is unchanged.

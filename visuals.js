@@ -2,7 +2,7 @@ import * as THREE from './three.module.js';
 import {RGBELoader} from './RGBELoader.js';
 import {Reflector} from './Reflector.js';
 const loader=new THREE.TextureLoader();
-function photo(name,rx=1,ry=rx,linear=false){const t=loader.load('./assets/'+name);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=4;if(!linear)t.colorSpace=THREE.SRGBColorSpace;return t;}
+function photo(name,rx=1,ry=rx,linear=false){const t=loader.load('./'+name);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=4;if(!linear)t.colorSpace=THREE.SRGBColorSpace;return t;}
 let seed=7321;
 const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
 const canvas=(w,h=w)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
@@ -38,7 +38,7 @@ function cloudSky(){
 function leavesTexture(){const c=canvas(64),g=c.getContext('2d');g.fillStyle='#637747';g.beginPath();g.moveTo(32,2);g.lineTo(43,20);g.lineTo(61,17);g.lineTo(49,36);g.lineTo(53,52);g.lineTo(32,46);g.lineTo(12,57);g.lineTo(15,34);g.lineTo(3,19);g.lineTo(23,21);g.closePath();g.fill();g.strokeStyle='#b1b690';g.lineWidth=1;g.beginPath();g.moveTo(32,60);g.lineTo(32,5);g.moveTo(32,32);g.lineTo(8,21);g.moveTo(32,32);g.lineTo(57,20);g.stroke();return texture(c);}
 export function makeEnvironment(scene,renderer,collision){
  const sky=cloudSky();scene.background=sky;const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(sky).texture;pm.dispose();scene.fog=new THREE.FogExp2('#919a99',.004);
- new RGBELoader().load('./assets/sky.hdr',hdr=>{hdr.mapping=THREE.EquirectangularReflectionMapping;scene.background=hdr;scene.backgroundIntensity=.48;
+ new RGBELoader().load('./sky.hdr',hdr=>{hdr.mapping=THREE.EquirectangularReflectionMapping;scene.background=hdr;scene.backgroundIntensity=.48;
  const dome=new THREE.Mesh(new THREE.SphereGeometry(150,40,24),new THREE.MeshBasicMaterial({map:hdr,side:THREE.BackSide,color:0x909090,depthWrite:false,fog:false}));dome.rotation.x=.6;dome.renderOrder=-10;scene.add(dome);
  const gen=new THREE.PMREMGenerator(renderer);scene.environment.dispose();scene.environment=gen.fromEquirectangular(hdr).texture;gen.dispose();sky.dispose();});
  scene.add(new THREE.HemisphereLight(0xdce3e7,0x343c30,1.4));const sun=new THREE.DirectionalLight(0xfff0e2,1.5);sun.position.set(12,25,18);scene.add(sun);
